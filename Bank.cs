@@ -9,6 +9,8 @@ namespace Banken
     class Bank : Konti
     {
         Program pg = new Program();
+
+        //Fields
         List<Konti> accounts = new List<Konti>();
         string bankName;
         double bankVault;
@@ -17,10 +19,17 @@ namespace Banken
             bankName = name;
             bankVault = vault;
         }
+        /// <summary>
+        /// Displays the bank name and how much money the bank has
+        /// </summary>
+        /// <returns></returns>
         public string Status()
         {
             return $"************** Wellcome to {bankName} ************ \n Money in the vault:               {bankVault:c} ";
         }
+        /// <summary>
+        /// Takes all accounts and writes them out
+        /// </summary>
         public void WriteAll()
         {
             int positionCount = 4;
