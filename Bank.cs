@@ -8,6 +8,7 @@ namespace Banken
 {
     class Bank : Konti
     {
+        Program pg = new Program();
         List<Konti> accounts = new List<Konti>();
         string bankName;
         double bankVault;
@@ -22,7 +23,18 @@ namespace Banken
         }
         public void WriteAll()
         {
-
+            int positionCount = 4;
+            foreach (Konti account in accounts)
+            {
+                Console.SetCursorPosition(0, positionCount);
+                Console.Write($"│   ID: ");
+                Console.Write($"{account.AccountNumber}", Program.TextColor(1));
+                Console.Write($"   │   Name: ", Program.TextColor(2));
+                Console.Write($"{account.Name}", Program.TextColor(1));
+                Console.Write($"   │   Balance: ", Program.TextColor(2));
+                Console.Write($"{account.Balance}", Program.TextColor(1));
+                positionCount++;
+            }
         }
         public void NewAccount(string name, int accountNumber)
         {

@@ -31,6 +31,7 @@ namespace Banken
                             $"",
                             $""
                             );
+                        minBank.WriteAll();
                         Console.ReadLine();
                         break;
                     #endregion
