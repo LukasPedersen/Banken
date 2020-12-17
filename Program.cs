@@ -106,33 +106,157 @@ namespace Banken
                     #endregion
                     #region Case3
                     case '3':
+                        double depositAmount = 0;
+                        int depositAccountId = 0;
                         Menu
                             (
                             "**************** Deposit money ****************\n",
-                            $"",
+                            $"Input amount: ",
                             $"",
                             $"",
                             $""
                             );
-                        Console.ReadLine();
+                        Console.SetCursorPosition(15, 4);
+                        try
+                        {
+                            depositAmount = Convert.ToDouble(Console.ReadLine());
+                        }
+                        catch (FormatException e)
+                        {
+                            Console.Clear();
+                            Console.WriteLine($"An error occurred errormessage: {e.Message}");
+                            Console.ReadKey();
+                        }
+                        Menu
+                            (
+                            "**************** Deposit money ****************\n",
+                            $"Amount: {depositAmount}$",
+                            $"Input account ID: ",
+                            $"",
+                            $""
+                            );
+                        Console.SetCursorPosition(19, 5);
+                        try
+                        {
+                            depositAccountId = Convert.ToInt32(Console.ReadLine());
+                        }
+                        catch (FormatException e)
+                        {
+                            Console.Clear();
+                            Console.WriteLine($"An error occurred errormessage: {e.Message}");
+                            Console.ReadKey();
+                        }
+                        Menu
+                            (
+                            "**************** Deposit money ****************\n",
+                            $"Amount: {depositAmount}$",
+                            $"account ID: {depositAccountId}",
+                            $"",
+                            $"Is the information displayed correct? Y/N"
+                            );
+                        string key1 = Console.ReadKey().KeyChar.ToString();
+                        Console.Clear();
+                        switch (key1)
+                        {
+                            case "y":
+                                minBank.Deposit(depositAmount, depositAccountId);
+                                break;
+                            case "n":
+                                Menu
+                                (
+                                "**************** Deposit money ****************\n",
+                                $"Deposit was canceled",
+                                $"",
+                                $"",
+                                $""
+                                );
+                                Console.ReadKey();
+                                break;
+                            default:
+                                Main();
+                                break;
+                        }
                         break;
+
                     #endregion
                     #region Case4
                     case '4':
+                        double withdrawAmount = 0;
+                        int withdrawAccountId = 0;
                         Menu
                             (
                             "**************** Withdraw money ****************\n",
-                            $"",
+                            $"Withdraw amount: ",
                             $"",
                             $"",
                             $""
                             );
-                        Console.ReadLine();
+                        Console.SetCursorPosition(18, 4);
+                        try
+                        {
+                            withdrawAmount = Convert.ToDouble(Console.ReadLine());
+                        }
+                        catch (FormatException e)
+                        {
+                            Console.Clear();
+                            Console.WriteLine($"An error occurred errormessage: {e.Message}");
+                            Console.ReadKey();
+                        }
+                        Menu
+                            (
+                            "**************** Withdraw money ****************\n",
+                            $"Amount: {withdrawAmount}$",
+                            $"Input account ID: ",
+                            $"",
+                            $""
+                            );
+                        Console.SetCursorPosition(20, 5);
+                        try
+                        {
+                            withdrawAccountId = Convert.ToInt32(Console.ReadLine());
+                        }
+                        catch (FormatException e)
+                        {
+                            Console.Clear();
+                            Console.WriteLine($"An error occurred errormessage: {e.Message}");
+                            Console.ReadKey();
+                        }
+                        Menu
+                            (
+                            "**************** Withdraw money ****************\n",
+                            $"Amount: {withdrawAmount}$",
+                            $"account ID: {withdrawAccountId}",
+                            $"",
+                            $"Is the information displayed correct? Y/N"
+                            );
+                        string key2 = Console.ReadKey().KeyChar.ToString();
+                        Console.Clear();
+                        switch (key2)
+                        {
+                            case "y":
+                                minBank.Withdraw(withdrawAmount, withdrawAccountId);
+                                break;
+                            case "n":
+                                Menu
+                                (
+                                "**************** Withdraw money ****************\n",
+                                $"Withdraw was canceled",
+                                $"",
+                                $"",
+                                $""
+                                );
+                                Console.ReadKey();
+                                break;
+                            default:
+                                Main();
+                                break;
+                        }
                         break;
                     #endregion
                     case 'X':
                         break;
                 }
+                title = minBank.Status();
                 Menu(title, "(1): Show all accounts", "(2): Create an account", "(3): Deposit money", "(4): Withdraw money");
             }
             while (keyinfo.KeyChar != 'x');
