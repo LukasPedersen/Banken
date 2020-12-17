@@ -66,6 +66,7 @@ namespace Banken
                         {
                             Console.Clear();
                             Console.WriteLine($"An error occurred errormessage: {e.Message}");
+                            Console.ReadKey();
                         }
                         
                         Console.Clear();
