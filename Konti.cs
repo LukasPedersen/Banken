@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Banken
 {
-    class Konti
+    public class Konti
     {
         //Fields
         string accountName;
@@ -48,4 +48,29 @@ namespace Banken
             }
         } //Read/Write
     }
+
+    //small scale Polymorfisme with virtual ond override method
+    #region Date
+    public class Date
+    {
+        public virtual string GetDate()
+        {
+            return DateTime.Now.ToString("dddd, dd MMMM yyyy") + "  Kl: " + DateTime.Now.ToString("HH:mm");
+        }
+    }
+    public class Day : Date
+    {
+        public override string GetDate()
+        {
+            return DateTime.Now.ToString("dddd, dd MMMM yyyy");
+        }
+    }
+    public class Time : Date
+    {
+        public override string GetDate()
+        {
+            return DateTime.Now.ToString("HH:mm");
+        }
+    }
+    #endregion
 }

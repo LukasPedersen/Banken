@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace Banken
 {
-    class Program
+    //Abstract class to prohibited creation of program object
+    public class Program
     {
+
         static void Main()
         {
             Bank minBank = new Bank("EUC Syd", 49413, "", 0);
@@ -263,18 +265,21 @@ namespace Banken
         }
         public static void Menu(string title, string _text1, string _text2, string _text3, string _text4)
         {
-
-
+            Time tm = new Time();
+            Day dy = new Day();
+            Date dt = new Date();
             Console.Clear();
-            Console.Write("┌───────────────────────────────────────────────┐\n", TextColor(2));
-            Console.Write("│", TextColor(2)); Console.Write($"{title}\n", TextColor(1));
-            Console.Write("├───────────────────────────────────────────────┤\n", TextColor(2));
-            Console.Write("│", TextColor(2)); Console.Write($"{_text1}\n", TextColor(1));
-            Console.Write("│", TextColor(2)); Console.Write($"{_text2}\n", TextColor(1));
-            Console.Write("│", TextColor(2)); Console.Write($"{_text3}\n", TextColor(1));
-            Console.Write("│", TextColor(2)); Console.Write($"{_text4}\n", TextColor(1));
-            Console.Write("│", TextColor(2)); Console.Write($"(X): Exit/Back\n", TextColor(1));
-            Console.Write("└───────────────────────────────────────────────┘", TextColor(2));
+            Console.Write("┌───────────────────────────────────────────────┐\n", TextColor(Colors.DarkMagenta));
+            Console.Write("│", TextColor(Colors.DarkMagenta)); Console.Write($"{title}\n", TextColor(Colors.DarkBlue));
+            Console.Write("├───────────────────────────────────────────────┤\n", TextColor(Colors.DarkMagenta));
+            Console.Write("│", TextColor(Colors.DarkMagenta)); Console.Write($"{_text1}\n", TextColor(Colors.DarkBlue));
+            Console.Write("│", TextColor(Colors.DarkMagenta)); Console.Write($"{_text2}\n", TextColor(Colors.DarkBlue));
+            Console.Write("│", TextColor(Colors.DarkMagenta)); Console.Write($"{_text3}\n", TextColor(Colors.DarkBlue));
+            Console.Write("│", TextColor(Colors.DarkMagenta)); Console.Write($"{_text4}\n", TextColor(Colors.DarkBlue));
+            Console.Write("│", TextColor(Colors.DarkMagenta)); Console.Write($"(X): Exit/Back\n", TextColor(Colors.DarkBlue));
+            Console.Write("└───────────────────────────────────────────────┘", TextColor(Colors.DarkMagenta));
+            Console.SetCursorPosition(0,10);
+            Console.Write($"Time of day: {tm.GetDate()}\nToday is: {dy.GetDate()}\nso it is : {dt.GetDate()}");
             WriteChar(0, 2);
             WriteChar(48, 1);
             WriteChar(48, 2);
@@ -289,20 +294,19 @@ namespace Banken
             Console.SetCursorPosition(x, y);
             Console.Write("│");
         }
-        public static string TextColor(int colorCode)
+        //A enumeration
+        public enum Colors { DarkBlue = 1, DarkMagenta = 2 }
+        public static string TextColor(Colors c)
         {
-            switch (colorCode)
+            switch (c)
             {
-                case 1:
+                case Colors.DarkBlue:
                     Console.ForegroundColor = ConsoleColor.DarkBlue;
                     return "";
-                case 2:
+                case Colors.DarkMagenta:
                     Console.ForegroundColor = ConsoleColor.DarkMagenta;
                     return "";
-                case 3:
-                    Console.ForegroundColor = ConsoleColor.DarkRed;
-                    return "";
-                default:
+                    default:
                     return "";
             }
         }

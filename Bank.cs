@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace Banken
 {
-    class Bank : Konti
+    public class Bank : Konti
     {
-        Program pg = new Program();
-
         //Fields
         List<Konti> accounts = new List<Konti>();
         string bankName;
@@ -39,12 +37,12 @@ namespace Banken
             foreach (Konti account in accounts)
             {
                 Console.SetCursorPosition(0, positionCount);
-                Console.Write($"│       ID: ", Program.TextColor(2));
-                Console.Write($"{account.AccountNumber}", Program.TextColor(1));
-                Console.Write($" │ Name: ", Program.TextColor(2));
-                Console.Write($"{account.Name}", Program.TextColor(1));
-                Console.Write($" │ Balance: ", Program.TextColor(2));
-                Console.Write($"{account.Balance}", Program.TextColor(1));
+                Console.Write($"│       ID: ", Program.TextColor(Program.Colors.DarkMagenta));
+                Console.Write($"{account.AccountNumber}", Program.TextColor(Program.Colors.DarkBlue));
+                Console.Write($" │ Name: ", Program.TextColor(Program.Colors.DarkMagenta));
+                Console.Write($"{account.Name}", Program.TextColor(Program.Colors.DarkBlue));
+                Console.Write($" │ Balance: ", Program.TextColor(Program.Colors.DarkMagenta));
+                Console.Write($"{account.Balance}", Program.TextColor(Program.Colors.DarkBlue));
                 positionCount++;
             }
         }
